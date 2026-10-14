@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FantaMeetFit di Natale 🎄🏋️‍♂️</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER HERO -->
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <div class="badge-xmas">🎄 Edizione Speciale di Natale 🎅</div>
+      <h1>FANTA<span class="highlight">MEETFIT</span></h1>
+      <p class="subtitle">Scala la classifica della palestra accumulando punti con i tuoi allenamenti, le tue sfide e coinvolgendo i tuoi amici!</p>
+      
+      <div class="info-box">
+        <p>📌 <strong>Come funziona:</strong> Ogni volta che completi un'azione o più, compila questo modulo per registrarla e caricare la tua prova fotografica. Ricchi premi ti aspettano!</p>
+        <p class="timer">🗓 <strong>Durata:</strong> Il gioco resterà attivo fino al <strong>25 Dicembre</strong>.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTAINER PRINCIPALE -->
+  <main class="container">
+
+    <!-- SEZIONE SOGLIE E PREMI -->
+    <section class="card prizes-card">
+      <h2>🏆 Soglie e Premi Finali</h2>
+      <p class="section-desc">Al termine del gioco verranno premiati i primi classificati e chi supererà queste soglie punteggio:</p>
+      <div class="prizes-grid">
+        <div class="prize-badge">
+          <i class="fa-solid fa-medal bronze"></i>
+          <div>
+            <strong>Soglia Bronzo (20 pt)</strong>
+            <span>Gadget MeetFit Esclusivo</span>
+          </div>
+        </div>
+        <div class="prize-badge">
+          <i class="fa-solid fa-medal silver"></i>
+          <div>
+            <strong>Soglia Argento (50 pt)</strong>
+            <span>Sconto 20% su Rinnovo o Merchandise</span>
+          </div>
+        </div>
+        <div class="prize-badge">
+          <i class="fa-solid fa-trophy gold"></i>
+          <div>
+            <strong>Soglia Oro (100 pt)</strong>
+            <span>1 Mese OMAGGIO + Kit VIP FantaMeetFit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-layout">
+
+      <!-- FORM DI REGISTRAZIONE AZIONI -->
+      <section class="card form-card">
+        <h2><i class="fa-solid fa-pen-to-square"></i> Registra / Aggiorna Punti</h2>
+        <form id="fantaForm">
+          
+          <div class="form-group">
+            <label for="userName">Nome e Cognome *</label>
+            <input type="text" id="userName" placeholder="Es. Mario Rossi" required>
+            <small>Usato solo dallo staff per verificare i premi.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="userNickname">Nickname FantaMeetFit *</label>
+            <input type="text" id="userNickname" placeholder="Es. SuperFit99, XmasRunner..." required>
+            <small class="highlight-text">🔒 Questo è l'unico nome che apparirà nella classifica pubblica!</small>
+          </div>
+
+          <div class="form-group">
+            <label for="userEmail">Email *</label>
+            <input type="email" id="userEmail" placeholder="Es. mario.rossi@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <div class="selection-header">
+              <label class="section-label">Seleziona le azioni completate oggi:</label>
+              <!-- BOX LIVE CALCOLO PUNTI -->
+              <div class="live-points-box">
+                Punti selezionati: <span id="currentSelectionTotal">0</span> pt
+              </div>
+            </div>
+
+            <!-- AZIONI REGOLAMENTO -->
+            <div class="actions-list">
+              
+              <label class="action-item">
+                <input type="checkbox" name="action" value="0.5" data-title="Ingresso in Palestra Check-in">
+                <div class="action-info">
+                  <span class="action-title">🏋️‍♂️ Ingresso / Allenamento del giorno</span>
+                  <span class="action-points">+0.5 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="5" data-title="Ho portato un amico a fare una prova">
+                <div class="action-info">
+                  <span class="action-title">🤝 Ho portato un amico a fare una prova</span>
+                  <span class="action-points">+5 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="10" data-title="Il mio amico si è iscritto (Mensile/Trimestrale)">
+                <div class="action-info">
+                  <span class="action-title">✍️ Il mio amico si è iscritto (Mensile/Trimestrale)</span>
+                  <span class="action-points">+10 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="20" data-title="Il mio amico si è iscritto (Annuale)">
+                <div class="action-info">
+                  <span class="action-title">⭐ Il mio amico si è iscritto (Annuale)</span>
+                  <span class="action-points">+20 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="1" data-title="Ho pubblicato una Story/Post su Instagram taggando la palestra">
+                <div class="action-info">
+                  <span class="action-title">📱 Post/Story Instagram con tag @MeetFit</span>
+                  <span class="action-points">+1 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="3" data-title="Mi sono allenato con un outfit natalizio / cappellino">
+                <div class="action-info">
+                  <span class="action-title">🎅 Allenamento con outfit natalizio / cappellino</span>
+                  <span class="action-points">+3 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="2" data-title="Ho fatto un video con un Istruttore mentre facevo un esercizio">
+                <div class="action-info">
+                  <span class="action-title">📸 Video esercizio con un Istruttore</span>
+                  <span class="action-points">+2 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="3" data-title="Ho lasciato una recensione su Google">
+                <div class="action-info">
+                  <span class="action-title">⭐ Recensione su Google</span>
+                  <span class="action-points">+3 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="10" data-title="Rinnovo/Iscrizione Abbonamento Annuale">
+                <div class="action-info">
+                  <span class="action-title">💳 Acquisto / Rinnovo Abbonamento Annuale</span>
+                  <span class="action-points">+10 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="5" data-title="Rinnovo/Iscrizione Abbonamento Mensile/Trimestrale">
+                <div class="action-info">
+                  <span class="action-title">💳 Acquisto / Rinnovo Abbonamento Mensile/Trimestrale</span>
+                  <span class="action-points">+5 pt</span>
+                </div>
+              </label>
+
+              <label class="action-item">
+                <input type="checkbox" name="action" value="2" data-title="Ho acquistato telo/sacca MeetFit">
+                <div class="action-info">
+                  <span class="action-title">🛍️ Acquisto Telo o Sacca MeetFit</span>
+                  <span class="action-points">+2 pt</span>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- CARICAMENTO PROVA FOTOGRAFICA -->
+          <div class="form-group">
+            <label for="proofFile">📷 Carica prova fotografica (Screenshot / Foto)</label>
+            <input type="file" id="proofFile" accept="image/*">
+            <small>Richiesto per confermare le azioni social, outfit o recensioni.</small>
+          </div>
+
+          <!-- TASTO AGGIORNA PUNTI CHIARO E VISIBILE -->
+          <button type="submit" class="btn-submit">
+            <i class="fa-solid fa-arrows-rotate"></i> AGGIORNA PUNTI IN CLASSIFICA
+          </button>
+        </form>
+      </section>
+
+      <!-- CLASSIFICA IN TEMPO REALE -->
+      <section class="card leaderboard-card">
+        <div class="leaderboard-header">
+          <h2><i class="fa-solid fa-ranking-star"></i> Classifica Ufficiale</h2>
+          <button id="btnResetData" class="btn-secondary" title="Azzera dati (Per Gestori)">
+            <i class="fa-solid fa-rotate-right"></i> Reset
+          </button>
+        </div>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Cerca nickname...">
+        </div>
+
+        <div class="table-wrapper">
+          <table id="leaderboardTable">
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th>Nickname</th>
+                <th>Azioni</th>
+                <th>Punti Totali</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+              <!-- Renderizzato dinamicamente con JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 MeetFit Gym • FantaMeetFit Natalizio</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
