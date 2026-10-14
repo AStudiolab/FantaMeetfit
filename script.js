@@ -137,8 +137,8 @@ function renderLeaderboard(filterText = '') {
     // Mostra SOLO NICKNAME nella colonna atleta
     tr.innerHTML = `
       <td>${rankBadge}</td>
-      <td><span class="user-nickname">${escapeHtml(athlete.nickname)}</span> ${prizeTag}</td>
-      <td>${athlete.count} azioni</td>
+      <td><span class="user-nickname">${escapeHtml(athlete.nickname)}</span><br>${prizeTag}</td>
+      <td>${athlete.count} az.</td>
       <td class="points-cell">+${athlete.points.toFixed(1)} pt</td>
     `;
 

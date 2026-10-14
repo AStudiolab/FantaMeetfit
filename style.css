@@ -29,7 +29,7 @@ body {
 .hero {
   position: relative;
   background-color: #037b74;
-  padding: 50px 20px;
+  padding: 40px 15px;
   text-align: center;
   border-bottom: 4px solid var(--accent-gold);
 }
@@ -52,9 +52,10 @@ body {
 }
 
 .hero h1 {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   letter-spacing: 2px;
   margin-bottom: 10px;
+  word-break: break-word;
 }
 
 .hero h1 .highlight {
@@ -62,18 +63,18 @@ body {
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #e2e8f0;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .info-box {
   background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 15px 20px;
+  padding: 15px;
   border-radius: 12px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-align: left;
 }
 
@@ -88,21 +89,21 @@ body {
 /* --- CONTAINER & CARD --- */
 .container {
   max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 20px;
+  margin: 20px auto;
+  padding: 0 15px;
 }
 
 .card {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .card h2 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
@@ -113,23 +114,23 @@ body {
 /* --- SOGLIE PREMI --- */
 .prizes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
   margin-top: 15px;
 }
 
 .prize-badge {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--card-border);
-  padding: 15px;
+  padding: 12px;
   border-radius: 12px;
 }
 
 .prize-badge i {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .prize-badge i.gold { color: #f59e0b; }
@@ -138,22 +139,22 @@ body {
 
 .prize-badge strong {
   display: block;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .prize-badge span {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
-/* --- GRID LAYOUT --- */
+/* --- GRID LAYOUT RESPONSIVE --- */
 .grid-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 20px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .grid-layout {
     grid-template-columns: 1fr;
   }
@@ -161,20 +162,22 @@ body {
 
 /* --- FORM E CHECKBOX --- */
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .form-group label {
   display: block;
   font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
 }
 
 .selection-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   margin-bottom: 10px;
 }
 
@@ -185,14 +188,14 @@ body {
   padding: 4px 10px;
   border-radius: 8px;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="file"] {
   width: 100%;
-  padding: 12px 15px;
+  padding: 12px;
   background-color: #0f172a;
   border: 1px solid var(--card-border);
   border-radius: 8px;
@@ -209,8 +212,8 @@ body {
 .form-group small {
   display: block;
   color: var(--text-muted);
-  font-size: 0.8rem;
-  margin-top: 5px;
+  font-size: 0.78rem;
+  margin-top: 4px;
 }
 
 .form-group small.highlight-text {
@@ -220,19 +223,19 @@ body {
 .actions-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 380px;
+  gap: 8px;
+  max-height: 350px;
   overflow-y: auto;
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 .action-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background-color: #0f172a;
   border: 1px solid var(--card-border);
-  padding: 12px 15px;
+  padding: 10px 12px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -243,32 +246,36 @@ body {
 }
 
 .action-item input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   accent-color: var(--primary-green);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .action-info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  gap: 8px;
 }
 
 .action-points {
   font-weight: bold;
   color: var(--primary-green);
+  white-space: nowrap;
 }
 
 .btn-submit {
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   background: linear-gradient(90deg, var(--primary-green), #025953);
   color: white;
   border: none;
   border-radius: 10px;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s, background 0.2s;
@@ -280,20 +287,21 @@ body {
   background: linear-gradient(90deg, #037b74, #024742);
 }
 
-/* --- CLASSIFICA TABELLA --- */
+/* --- CLASSIFICA TABELLA RESPONSIVE --- */
 .leaderboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .btn-secondary {
   background: transparent;
   border: 1px solid var(--card-border);
   color: var(--text-muted);
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 6px;
+  font-size: 0.85rem;
   cursor: pointer;
 }
 
@@ -304,7 +312,7 @@ body {
 
 .search-box {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .search-box i {
@@ -322,27 +330,32 @@ body {
   border: 1px solid var(--card-border);
   border-radius: 8px;
   color: white;
+  font-size: 0.9rem;
 }
 
 .table-wrapper {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 320px;
 }
 
 th, td {
-  padding: 12px 15px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--card-border);
+  font-size: 0.9rem;
 }
 
 th {
   background-color: #0f172a;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
 }
 
@@ -352,11 +365,12 @@ tbody tr:hover {
 
 .rank-badge {
   font-weight: bold;
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-radius: 6px;
   display: inline-block;
-  min-width: 28px;
+  min-width: 24px;
   text-align: center;
+  font-size: 0.85rem;
 }
 
 .rank-1 { background-color: var(--accent-gold); color: #000; }
@@ -366,12 +380,15 @@ tbody tr:hover {
 .user-nickname {
   font-weight: 600;
   color: var(--text-main);
+  word-break: break-all;
 }
 
 .user-badge-tag {
-  font-size: 0.75rem;
-  margin-left: 6px;
-  padding: 2px 6px;
+  display: inline-block;
+  font-size: 0.7rem;
+  margin-left: 4px;
+  margin-top: 2px;
+  padding: 1px 5px;
   border-radius: 4px;
   background: rgba(255,255,255,0.1);
 }
@@ -379,11 +396,32 @@ tbody tr:hover {
 .points-cell {
   font-weight: bold;
   color: #2dd4bf;
+  white-space: nowrap;
 }
 
 footer {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  padding: 0 15px;
+}
+
+/* --- MEDIA QUERIES AGGIUNTIVE PER SMARTPHONE PICCOLI (< 480px) --- */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+
+  .action-item {
+    padding: 8px 10px;
+  }
+
+  .action-info {
+    font-size: 0.8rem;
+  }
 }
