@@ -26,6 +26,7 @@ body {
 }
 
 /* --- HERO HEADER --- */
+
 .hero {
   position: relative;
   background-color: #037b74;
@@ -52,7 +53,7 @@ body {
 }
 
 .hero h1 {
-  font-size: 2.4rem;
+  font-size: clamp(1.8rem, 6vw, 2.8rem); /* Ridimensionamento fluido automatico per ogni schermo */
   letter-spacing: 2px;
   margin-bottom: 10px;
   word-break: break-word;
