@@ -20,11 +20,14 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 const COLLECTION_NAME = "athletes";
 
-// Stato dell'applicazione (sincronizzato con Firestore)
+// Stato dell'applicazione
 let athletes = [];
 
 // Elementi DOM
 const fantaForm = document.getElementById('fantaForm');
+const inputFullName = document.getElementById('userName');
+const inputNickname = document.getElementById('userNickname');
+const inputEmail = document.getElementById('userEmail');
 const actionCheckboxes = document.querySelectorAll('input[name="action"]');
 const currentSelectionTotal = document.getElementById('currentSelectionTotal');
 const leaderboardBody = document.getElementById('leaderboardBody');
@@ -35,7 +38,23 @@ const btnResetData = document.getElementById('btnResetData');
 document.addEventListener('DOMContentLoaded', async () => {
   await loadAthletesFromFirebase();
   calculateSelectionTotal();
+  loadSavedUserData(); // 🟢 Ricarica i dati salvati sul telefono del cliente
 });
+
+// Carica i dati salvati nel browser del cliente (se presenti)
+function loadSavedUserData() {
+  const savedUser = localStorage.getItem('fantaMeetFit_user');
+  if (savedUser) {
+    try {
+      const userData = JSON.parse(savedUser);
+      if (userData.fullName) inputFullName.value = userData.fullName;
+      if (userData.nickname) inputNickname.value = userData.nickname;
+      if (userData.email) inputEmail.value = userData.email;
+    } catch (e) {
+      console.error("Errore nel recupero dei dati locali", e);
+    }
+  }
+}
 
 // Calcolo totale parziale checkbox in tempo reale
 actionCheckboxes.forEach(checkbox => {
@@ -74,10 +93,13 @@ async function loadAthletesFromFirebase() {
 fantaForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const fullName = document.getElementById('userName').value.trim();
-  const nickname = document.getElementById('userNickname').value.trim();
-  const email = document.getElementById('userEmail').value.trim();
+  const fullName = inputFullName.value.trim();
+  const nickname = inputNickname.value.trim();
+  const email = inputEmail.value.trim();
   
+  // Salva i dati sul dispositivo del cliente per le prossime volte
+  localStorage.setItem('fantaMeetFit_user', JSON.stringify({ fullName, nickname, email }));
+
   // Calcolo punti aggiuntivi selezionati
   let addedPoints = 0;
   let selectedCount = 0;
@@ -130,9 +152,11 @@ fantaForm.addEventListener('submit', async (e) => {
       alert(`Benvenuto al FantaMeetFit, ${nickname}!\n\nIl tuo profilo è stato creato con ${addedPoints.toFixed(1)} punti! 🎄🏋️‍♂️`);
     }
 
-    // Ricarica i dati aggiornati da Firebase e resetta il form
+    // Ricarica i dati aggiornati da Firebase e resetta solo le checkbox (mantenendo i dati anagrafici)
     await loadAthletesFromFirebase();
-    fantaForm.reset();
+    
+    // Deseleziona le checkbox dopo l'invio
+    actionCheckboxes.forEach(cb => cb.checked = false);
     calculateSelectionTotal();
 
   } catch (error) {
@@ -143,7 +167,6 @@ fantaForm.addEventListener('submit', async (e) => {
 
 // Render della tabella Classifica (Mostra SOLO il Nickname)
 function renderLeaderboard(filterText = '') {
-  // Ordina atleti per punteggio decrescente
   athletes.sort((a, b) => b.points - a.points);
 
   leaderboardBody.innerHTML = '';
@@ -160,13 +183,11 @@ function renderLeaderboard(filterText = '') {
   filteredAthletes.forEach((athlete, index) => {
     const tr = document.createElement('tr');
 
-    // Badge posizione
     let rankBadge = `<span class="rank-badge">${index + 1}</span>`;
     if (index === 0) rankBadge = `<span class="rank-badge rank-1">1 🥇</span>`;
     if (index === 1) rankBadge = `<span class="rank-badge rank-2">2 🥈</span>`;
     if (index === 2) rankBadge = `<span class="rank-badge rank-3">3 🥉</span>`;
 
-    // Tag soglia raggiunta
     let prizeTag = '';
     if (athlete.points >= 100) {
       prizeTag = `<span class="user-badge-tag" style="color:#f59e0b;">🏆 Oro</span>`;
