@@ -213,9 +213,34 @@ searchInput.addEventListener('input', (e) => {
   renderLeaderboard(e.target.value);
 });
 
-// Reset dati per i gestori
+// --- GESTIONE MODALITÀ AMMINISTRATORE / RESET ---
+
+// 1. Attivazione modalità admin tramite tasto rapido o clic sul footer
+// Cliccando 3 volte sul footer (o inserendo un pulsante nascosto) chiede il PIN
+const footer = document.querySelector('footer');
+let clickCount = 0;
+
+if (footer) {
+  footer.addEventListener('click', () => {
+    clickCount++;
+    if (clickCount === 3) {
+      const pin = prompt("Inserisci il PIN Amministratore della palestra:");
+      if (pin === "1234") { // 🔴 Sostituisci "1234" con il tuo PIN segreto
+        document.body.classList.add('admin-mode');
+        alert("Modalità Gestore Attivata! Ora il tasto Reset è visibile.");
+      } else {
+        alert("PIN Errato!");
+      }
+      clickCount = 0;
+    }
+  });
+}
+
+// 2. Azione del pulsante Reset (protetta da conferma)
 btnResetData.addEventListener('click', () => {
-  alert("Per azzerare o eliminare i dati in modo sicuro, puoi gestire la collezione 'athletes' direttamente dalla tua console Firebase.");
+  if (confirm("Sei sicuro di voler azzerare i dati? Gestisci questa operazione con attenzione direttamente dalla consolle Firebase.")) {
+    alert("Per motivi di sicurezza su Firebase, elimina la collezione 'athletes' dal pannello di controllo Firebase.");
+  }
 });
 
 // Helper XSS Security
