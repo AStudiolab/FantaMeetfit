@@ -426,3 +426,12 @@ footer {
     font-size: 0.8rem;
   }
 }
+/* Nasconde il pulsante reset di default per i clienti */
+#btnResetData {
+  display: none !important;
+}
+
+/* Mostra il pulsante solo se attivata la modalità gestore */
+body.admin-mode #btnResetData {
+  display: inline-block !important;
+}
